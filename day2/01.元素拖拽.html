@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: yellowgreen;
+            position: absolute;
+        }
+
+        #app1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var box = document.getElementById('app')
+            box.onmousedown = function (event) {
+                // 浏览器兼容性
+                event = event || window.event
+                box.setCapture && box.setCapture();
+                // div的偏移量 鼠标.clientX - 元素.offsetLeft 
+                // ol: 鼠标距离元素左边的像素
+                // ot: 鼠标距离元素顶部的像素
+                var ol = event.clientX - box.offsetLeft
+                var ot = event.clientY - box.offsetTop
+
+                // 为document绑定一个鼠标移动事件
+                document.onmousemove = function (event) {
+                    event = event || window.event
+                    
+                    // 获取元素移动的距离
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+
+                    box.style.left = left + 'px'
+                    box.style.top = top + 'px'
+                }
+
+                // 为document绑定一个鼠标松开的事件
+                document.onmouseup = function() {
+                    // 鼠标松开时,元素固定
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                    // 取消对事件的捕获
+                    box.releaseCapture && box.releaseCapture()
+                }
+                // 阻止浏览器默认去搜索引擎中搜索内容
+                return false
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="app"></div>
+
+</body>
+
+</html>
