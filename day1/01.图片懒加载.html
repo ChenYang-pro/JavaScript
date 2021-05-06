@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片懒加载</title>
+    <style>
+        img {
+            display: block;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        懒加载：用到了再去加载，减少页面响应时间，减少用户的流量消耗。
+
+        原理： 1. 原生JS：在没进入可视区域的时候，我们先不给这个<img>标签赋src属性。
+            API:  document.documentElement.clientHeight//获取屏幕可视区域的高度
+                element.offsetTop//获取元素相对于文档顶部的高度
+                document.documentElement.scrollTop//获取浏览器窗口顶部与文档顶部之间的距离，也就是滚动条滚动的距离
+            offsetTop-scroolTop<clientHeight时，图片进入可视区
+            
+    -->
+    <img data-src="./images/1.jpg" alt="">
+    <img data-src="./images/2.jpg" alt="">
+    <img data-src="./images/3.jpg" alt="">
+    <img data-src="./images/4.jpg" alt="">
+    <img data-src="./images/5.jpg" alt="">
+    <img data-src="./images/6.jpg" alt="">
+    <img data-src="./images/7.jpg" alt="">
+    <img data-src="./images/8.jpg" alt="">
+    <img data-src="./images/9.jpg" alt="">
+    <img data-src="./images/10.jpg" alt="">
+    <img data-src="./images/1.jpg" alt="">
+    <img data-src="./images/2.jpg" alt="">
+</body>
+<script>
+    var imgs = document.querySelectorAll('img')
+
+    //offsetTop是元素与offsetParent的距离，循环获取直到页面顶部
+    function getTop(event) {
+        var h = event.offsetTop;
+        while(event=event.offsetParent) {
+            h += event.offsetTop
+        }
+        return h;
+    }
+
+    function lazyLoad(imgs) {
+        var viewPort = document.documentElement.clientHeight;
+        var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop;
+
+        for (let i = 0; i<imgs.length; i++) {
+            if (viewPort+scrollHeight > getTop(imgs[i])) {
+                imgs[i].src = imgs[i].getAttribute('data-src')
+            }
+        }
+    }
+
+    window.onload = window.onscroll = function() {lazyLoad(imgs)}
+</script>
+
+</html>
