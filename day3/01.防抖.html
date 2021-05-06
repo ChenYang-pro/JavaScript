@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+    <style>
+        img {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        防抖:在一定时间内规定事件被触发的次数
+    
+     -->
+    <img src="../day1/images/1.jpg" alt="">
+    <img src="../day1/images/2.jpg" alt="">
+    <img src="../day1/images/3.jpg" alt="">
+    <img src="../day1/images/4.jpg" alt="">
+    <img src="../day1/images/5.jpg" alt="">
+    <img src="../day1/images/6.jpg" alt="">
+    <img src="../day1/images/7.jpg" alt="">
+    <img src="../day1/images/8.jpg" alt="">
+    <img src="../day1/images/9.jpg" alt="">
+    <img src="../day1/images/10.jpg" alt="">
+    <img src="../day1/images/1.jpg" alt="">
+    <img src="../day1/images/2.jpg" alt="">
+    <script>
+        // 防抖函数
+        function debounce(func, wait, immediate) {
+            // 设置定时器变量
+            var timeout;
+            return function() {
+                // 每次触发scroll前清除定时器
+                clearTimeout(timeout)
+                timeout = setTimeout(func,wait)
+            }
+        }
+
+        // 定时器的回调函数
+        function realFunc(){
+            console.log("Sucess")
+        }
+
+        // 使用防抖
+        window.addEventListener('scroll',debounce(realFunc,500))
+        // 没有用防抖
+        // window.addEventListener('scroll',debounce(realFunc,0))
+    </script>
+</body>
+
+</html>

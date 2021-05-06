@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流</title>
+    <style>
+        img{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        防抖的缺陷:无法适应懒加载,ajax请求
+        节流(throttling):只允许一个函数在 X 毫秒内执行一次。
+     -->
+    <img src="../day1/images/1.jpg" alt="">
+    <img src="../day1/images/2.jpg" alt="">
+    <img src="../day1/images/3.jpg" alt="">
+    <img src="../day1/images/4.jpg" alt="">
+    <img src="../day1/images/5.jpg" alt="">
+    <img src="../day1/images/6.jpg" alt="">
+    <img src="../day1/images/7.jpg" alt="">
+    <img src="../day1/images/8.jpg" alt="">
+    <img src="../day1/images/9.jpg" alt="">
+    <img src="../day1/images/10.jpg" alt="">
+    <img src="../day1/images/1.jpg" alt="">
+    <img src="../day1/images/2.jpg" alt="">
+</body>
+<script>
+    function throttle(func, wait, mustRun) {
+        var timeout
+        var startTime = new Date()
+        return function() {
+            var context = this;
+            args = arguments;
+            // console.log(arguments)
+            curTime = new Date();
+            clearTimeout(timeout)
+            // 到达规定时间,执行函数
+            if(curTime-startTime>=mustRun) {
+                func.apply(context,args);
+                startTime = curTime
+            } else {
+                timeout = setTimeout(func,wait)
+            }
+        }
+    }
+
+    function realFunc() {
+        console.log('Success')
+    }
+
+    window.addEventListener('scroll',throttle(realFunc,500,1000))
+</script>
+
+</html>
