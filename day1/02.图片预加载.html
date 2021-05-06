@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片预加载</title>
+    <style>
+        img {
+            display: block;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        预加载：全部资源预先加载好，在浏览图片较多的网页(淘宝、京东等)时，会有更好的用户体验。
+
+        原理： 当页面打开图片提前加载，并且缓存在用户本地，需要用到时直接进行渲染   
+        
+        1. 原生JS
+        2. generator
+        3. async await
+    -->
+    <img data-src="./images/1.jpg" alt="">
+    <img data-src="./images/2.jpg" alt="">
+    <img data-src="./images/3.jpg" alt="">
+    <img data-src="./images/4.jpg" alt="">
+    <img data-src="./images/5.jpg" alt="">
+    <img data-src="./images/6.jpg" alt="">
+    <img data-src="./images/7.jpg" alt="">
+    <img data-src="./images/8.jpg" alt="">
+    <img data-src="./images/9.jpg" alt="">
+    <img data-src="./images/10.jpg" alt="">
+    <img data-src="./images/1.jpg" alt="">
+    <img data-src="./images/2.jpg" alt="">
+</body>
+
+<script>
+
+    var imgs = document.getElementsByTagName('img')
+    console.log(imgs)
+
+
+    function show(e) {
+        var tempImg = document.createElement('img');
+        tempImg.src = e.getAttribute('data-src')
+        tempImg.onload = function () {
+            e.src = e.getAttribute('data-src')
+        }
+    }
+    for (let index = 0; index < imgs.length; index++) {
+        show(imgs[index])
+    }
+
+</script>
