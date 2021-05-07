@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组迭代</title>
+</head>
+
+<body>
+    <script>
+        // forEach() 遍历
+        var txt = "";
+        var numbers = [45, 4, 9, 16, 25];
+        numbers.forEach(myFunciton)
+        function myFunciton(value, index, array) {
+            txt += value + " "
+        }
+        console.log(txt)
+
+        // Array.map() 通过对每个数组元素执行函数来创建新数组
+        var numbers1 = [45, 4, 9, 16, 25];
+        var numbers2 = numbers1.map(myFunction);
+
+        function myFunction(value, index, array) {
+            return value * 2;
+        }
+        console.log(numbers2)
+
+        // Array.filter() 过滤
+        var numbers = [45, 4, 9, 16, 25];
+        var over18 = numbers.filter(myFunction);
+
+        function myFunction(value, index, array) {
+            return value > 18;
+        }
+        console.log(over18)
+
+        // Array.reduce() 计算数组中所有数字的和
+        var numbers1 = [45, 4, 9, 16, 25];
+        var sum = numbers1.reduce(myFunction, 10);
+
+        function myFunction(total, value) {
+            return total + value;
+        }
+        console.log("reduce()", sum)
+        // Array.reduceRight() 从右到左的Reduce
+        var numbers1 = [45, 4, 9, 16, 25];
+        var sum = numbers1.reduceRight(myFunction);
+
+        function myFunction(total, value, index, array) {
+            return total + value;
+        }
+        console.log("reduceRight()", sum)
+
+        // Array.every() 检查所有数组值是否通过测试。
+        var numbers = [45, 4, 9, 16, 25];
+        var allOver18 = numbers.every(myFunction);
+
+        function myFunction(value, index, array) {
+            return value > 18;
+        }
+        console.log(allOver18)
+
+        // Array.some() 某些数组值是否通过了测试。
+        var numbers = [45, 4, 9, 16, 25];
+        var someOver18 = numbers.some(myFunction);
+
+        function myFunction(value, index, array) {
+            return value > 18;
+        }
+        console.log(someOver18)
+
+        // Array.indexOf() 搜索元素返回下标值
+        var fruits = ["Apple", "Orange", "Apple", "Mango"];
+        console.log(fruits.indexOf("Apple"))
+
+        // Array.find() 返回通过测试函数的第一个数组元素的值。
+        var numbers = [4, 9, 16, 25, 29];
+        var first = numbers.find(myFunction);
+
+        function myFunction(value, index, array) {
+            return value > 18;
+        }
+        console.log("find()", first)
+
+        // Array.findIndex() 返回通过测试函数的第一个数组元素的索引。
+        var numbers = [4, 9, 16, 25, 29];
+        var first = numbers.findIndex(myFunction);
+
+        function myFunction(value, index, array) {
+            return value > 18;
+        }
+        console.log("findIndex()", first)
+    </script>
+</body>
+
+</html>

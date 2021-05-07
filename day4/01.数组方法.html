@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组的方法</title>
+    <style>
+        #demo {
+            width: 300px;
+            height: 300px;
+            background-color: rosybrown;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script>
+        // toString()  数组->字符串
+        var fruits = ["Banana", "Orange", "Apple", "Mango"];
+        // document.getElementById("demo").innerHTML = fruits.toString()
+        //  join() 数组->字符串 (指定分隔符)
+        document.getElementById("demo").innerHTML = fruits.join(" * ");
+        //  pop(): 从数组中删除最后一个元素 返回删除的元素
+        console.log(fruits.pop())
+        console.log(fruits)
+        // push(): 在数组结尾添加一个新元素 返回新数组的长度
+        console.log(fruits.push('KiWi'))
+        console.log(fruits)
+        // shift() 删除首个数组元素 返回元素
+        console.log(fruits.shift())
+        console.log(fruits)
+        // unshift() 在数组开头添加新元素
+        console.log(fruits.unshift('Lemon'))
+        console.log(fruits)
+        // delete 数组下标 删除下标数组元素 不建议
+        console.log(delete fruits[0])
+        console.log(fruits)
+        // splice() 向数组指定位置加入新项
+        console.log(fruits.splice(2, 0, "Tomato", "Ice cream"))
+        console.log(fruits)
+        // splice() 删除元素
+        console.log(fruits.splice(0, 1))
+        console.log(fruits)
+        // concat() 合并数组
+        var myGirls = ["Cecilie", "Lone"];
+        var myBoys = ["Emil", "Tobias", "Linus"];
+        var myClid = myGirls.concat(myBoys)
+        console.log(myClid)
+        // slice() 裁剪数组 将数组中的某个片段裁剪出来 不改变原来数组
+        console.log(fruits.slice(1))
+        console.log(fruits)
+    </script>
+</body>
+
+</html>

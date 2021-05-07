@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组排序</title>
+</head>
+
+<body>
+    <script>
+        // sort(): 按照字母顺序对数组排序
+        var fruits = ["Banana", "Orange", "Apple", "Mango"];
+        console.log("sort():", fruits.sort())
+        console.log(fruits)
+        // sort() 数字排序 指定比值函数 
+        var points = [40, 100, 1, 5, 25, 10];
+        console.log("sort():", points.sort(function (a, b) { return a - b }))
+        // reverse() 反转数组
+        console.log("reverse():", fruits.reverse())
+        console.log(fruits)
+        // Math.max() 最大值 Math.min() 最小值
+    </script>
+</body>
+
+</html>
