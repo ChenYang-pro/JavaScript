@@ -42,7 +42,7 @@
         myChart.showLoading();
         $.get('data.json').done(function (data) {
             myChart.hideLoading();
-            myChart.setOption(...);
+            myChart.setOption();
         });
 
         // 使用刚指定的配置项和数据显示图表。
