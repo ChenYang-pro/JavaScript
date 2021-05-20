@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖和节流</title>
+</head>
+
+<body>
+    <button id="btn1">防抖</button>
+    <button id="btn2">节流</button>
+</body>
+
+<script>
+
+    window.onload = function () {
+        document.getElementById("btn1").addEventListener("mousedown", debounce)
+        document.getElementById("btn2").addEventListener("mousedown", throttle)
+
+        function debounce() {
+            console.log("before debounce")
+            var timeout;
+            return function () {
+                clearTimeout(timeout)
+                timeout = setTimeout(() => {
+                    console.log("btn1")
+                }, 1000);
+            }
+        }
+
+        function throttle() {
+            var timeout
+            console.log("before throttle")
+            var setTime = new Date()
+            return function () {
+                var context = this;
+                args = arguments;
+                // console.log(arguments)
+                curTime = new Date();
+                clearTimeout(timeout)
+                // 到达规定时间,执行函数
+                if (curTime - startTime >= mustRun) {
+                    func.apply(context, args);
+                    startTime = curTime
+                } else {
+                    timeout = setTimeout(()=>{
+                        console.log("btn2")
+                    }, 1000)
+                }
+            }
+        }
+    }
+</script>
+
+</html>
