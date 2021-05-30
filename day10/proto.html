@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function a() {
+            let b = 3
+            a.prototype.sayname = function () {
+                console.log(b)
+            }
+            a.prototype.sing = function () {
+                console.log("hello sing!")
+            }
+        }
+
+        let b = new a()
+        // b.__proto__ 输出的是 a.prototype 原型对象中方法和属性
+        // a.__proto 输出的是function.prototype 原型对象的方法和属性
+
+        console.dir(a.__proto__)
+        console.dir(a.__proto__.__proto__)
+        console.dir(b.__proto__)
+    </script>
+</body>
+
+</html>
