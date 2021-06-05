@@ -11,8 +11,6 @@ function compare(version1,version2){
     }
     console.log(0)
 }
-
 let str1 = '1.012'
 let str2 = '1.001'
-
 compare(str1,str2)
