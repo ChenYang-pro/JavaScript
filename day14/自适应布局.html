@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .center {
+            width: 100%;
+            height: 500px;
+            background: lightgray;
+            float: left;
+        }
+
+        .left {
+            width: 200px;
+            height: 500px;
+            background: lightpink;
+            float: left;
+            margin-left: -100%;
+        }
+
+        .right {
+            width: 300px;
+            height: 500px;
+            background: lightgreen;
+            float: left;
+            margin-left: -300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="center">中间自适应</div> <!-- 因为相对来说，center中为主要内容，所以写前边，这样也有利于SEO -->
+        <div class="left">左列定宽</div>
+        <div class="right">右列定宽</div>
+    </div>
+
+
+</body>
+
+</html>

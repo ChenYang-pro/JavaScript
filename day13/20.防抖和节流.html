@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖和节流</title>
+</head>
+
+<body>
+    <button id="btn">防抖</button>
+    <div id="div" style="height: 2000px;"></div>
+    <script>
+        const btn = document.getElementById("btn")
+        // 防抖 在点击停止之后，才会在时间后触发，坐电梯
+        function debounce(fn, delay = 300) {
+            let timer = null
+            return function () {
+                if (timer) clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn()
+                }, delay);
+            }
+        }
+        // 节流：规定时间内要执行一次
+        function throttle(fn, delay) {
+            let flag = true
+            return function () {
+                if (!flag) return
+                flag = false
+                setTimeout(() => {
+                    fn()
+                    flag = true
+                }, delay);
+            }
+        }
+        window.addEventListener(
+            "scroll",
+            throttle(() => {
+                console.log(111);
+            }, 1000)
+        );
+        btn.addEventListener("click", throttle(() => console.log(222), 1000))
+    </script>
+</body>
+
+</html>
