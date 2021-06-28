@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul id="container"></ul>
+    </div>
+    <script>
+        // 渲染百万条结构简单的大数据时 怎么使用分片思想优化渲染
+        // window.requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行
+        let ul = document.getElementById("container")
+        let once = 20, total = 10000
+        let page = total / once, index = 0
+        function loop(curTotal, curIndex) {
+            if (curTotal <= 0) return false
+            let pageCount = Math.min(curTotal, once)
+            window.requestAnimationFrame(function () {
+                for (let i = 0; i < pageCount; i++){
+                    let li = document.createElement("li")
+                    li.innerText = curIndex + i + ":" + ~~(Math.random()*total)
+                    ul.appendChild(li)
+                }
+                loop(curTotal-pageCount,curIndex+pageCount)
+            })
+        }
+        loop(total,index)
+    </script>
+</body>
+
+</html>

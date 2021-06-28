@@ -1,46 +1,37 @@
 
 class EventEmitter {
     constructor() {
-        this.events = {}
+        // 用对象来存储回调，因为同一个事件可能有多个回调
+        this.callBack = {}
     }
-    // 实现订阅
-    on(type, callBack) {
-        if (!this.events[type]) this.events[type] = [callBack]
-        else this.events[type].push(callBack)
+    // 为事件名增加事件
+    on(type, fn) {
+        if (!this.callBack[type]) this.callBack[type] = [fn]
+        else this.callBack[type].push(fn)
     }
-    off(type, callBack) {
-        if (!this.events[type]) return
-        this.events[type] = this.events[type].filter((item) => {
-            return item !== callBack
-        })
+    off(type, fn) {
+        if (!this.callBack[type]) return
+        else this.callBack[type] = this.callBack[type].filter(item => item !== fn)
     }
-    once(type, callBack) {
-        function fn() {
-            callBack()
+    once(type, fn) {
+        function func() {
+            fn()
             this.off(type, fn)
         }
-        this.on(type, fn)
+        this.on(type, func)
     }
     emit(type, ...rest) {
-        this.events[type] &&
-            this.events[type].forEach((fn) => fn.apply(this, rest))
+        this.callBack[type] && this.callBack[type].forEach(fn => fn.apply(this, rest))
     }
 }
-
 const event = new EventEmitter();
-
 const handle = (...rest) => {
     console.log(rest);
 };
-
 event.on("click", handle);
-
 event.emit("click", 1, 2, 3, 4);
-
 event.off("click", handle);
-
 event.emit("click", 1, 2);
-
 event.once("dbClick", () => {
     console.log(123456);
 });
