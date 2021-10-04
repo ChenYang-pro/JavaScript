@@ -15,11 +15,6 @@ class Scheduler {
         }
         this.queue.push(promiseCreate)
     }
-    taskStart() {
-        for (let i = 0; i < this.maxCount; i++) {
-            this.request()
-        }
-    }
     request() {
         if (!this.queue || !this.queue.length || this.runCounts >= this.maxCount) return
         this.runCounts++
@@ -27,6 +22,11 @@ class Scheduler {
             this.runCounts--
             this.request()
         })
+    }
+    start() {
+        for (let i = 0; i < this.maxCount; i++) {
+            this.request() 
+        }
     }
 }
 const scheduler = new Scheduler(2);
@@ -37,4 +37,4 @@ addTask(1000, "1");
 addTask(500, "2");
 addTask(300, "3");
 addTask(400, "4");
-scheduler.taskStart();
+scheduler.start();

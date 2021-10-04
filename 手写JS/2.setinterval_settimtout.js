@@ -29,3 +29,15 @@ let a = myInterval(() => {
 //     }, t);
 // }
 // let b = myTimeout(() => console.log(111), 1000)
+
+function myInterval(fn,delay){
+    function Interval(){
+        fn()
+        setTimeout(() => {
+            Interval()
+        }, delay);
+    }
+    setTimeout(() => {
+        Interval
+    }, delay);
+}

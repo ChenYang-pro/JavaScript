@@ -24,19 +24,14 @@
 // function isObject(val) {
 //     return typeof val === 'object' && val !== null
 // }
-// function deepClone(obj, hash = new WeakMap()) {
+// function deepClone(obj) {
 //     // 如果不是对象，就直接返回
 //     if (!isObject(obj)) return obj;
-//     // 如果Map中有了，就去取
-//     if (hash.has(obj)) {
-//         return hash.get(obj);
-//     }
 //     // 数组 or 对象
 //     let target = Array.isArray(obj) ? [] : {};
-//     hash.set(obj, target);
 //     Reflect.ownKeys(obj).forEach((item) => {
 //         if (isObject(obj[item])) {
-//             target[item] = deepClone(obj[item], hash);
+//             target[item] = deepClone(obj[item]);
 //         } else {
 //             target[item] = obj[item];
 //         }
